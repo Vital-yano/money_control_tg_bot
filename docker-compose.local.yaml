@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  redis_local:
+    image: redis/redis-stack-server:7.2.0-v6
+    ports:
+      - 6381:6379
+    environment:
+      - REDIS_ARGS=--requirepass redis_local
+    volumes:
+      - redis_data_local:/data
+    networks:
+      - service_network
+
+volumes:
+  redis_data_local:
+
+
+networks:
+  service_network:
+    driver: bridge
